@@ -9,6 +9,7 @@ import time
 import folium
 from streamlit_folium import st_folium
 
+
 # --- Konfigürasyon ve Fonksiyonlar (Değişiklik Yok) ---
 load_dotenv()
 
@@ -23,9 +24,12 @@ except Exception as e:
     st.error(f"API konfigürasyonunda bir hata oluştu: {e}")
 
 
+@st.cache_data
 def get_coordinates(place_name, city):
+    """Bir yer ismini ve şehri alıp enlem-boylam koordinatlarını döndürür."""
     try:
-        geolocator = Nominatim(user_agent="travel_planner_app")
+        # User-agent'ı daha spesifik hale getirmek de iyi bir pratiktir
+        geolocator = Nominatim(user_agent="ai_travel_planner_by_osnn96")
         location = geolocator.geocode(f"{place_name}, {city}")
         time.sleep(1)
         if location:
