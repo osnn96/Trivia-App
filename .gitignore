@@ -1,0 +1,12 @@
+# Sanal Ortam
+.venv/
+
+# Hassas Bilgiler
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# IDE Ayarları
+.idea/
