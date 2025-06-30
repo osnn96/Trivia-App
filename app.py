@@ -28,9 +28,11 @@ except Exception as e:
 def get_coordinates(place_name, city):
     """Bir yer ismini ve şehri alıp enlem-boylam koordinatlarını döndürür."""
     try:
-        # User-agent'ı daha spesifik hale getirmek de iyi bir pratiktir
-        geolocator = Nominatim(user_agent="ai_travel_planner_by_osnn96")
+        # timeout parametresini ekleyerek bekleme süresini 10 saniyeye çıkarıyoruz.
+        geolocator = Nominatim(user_agent="ai_travel_planner_by_osnn96", timeout=10) # <-- DEĞİŞİKLİK BURADA
         location = geolocator.geocode(f"{place_name}, {city}")
+        # Artık time.sleep(1)'e de ihtiyacımız kalmıyor çünkü cache mekanizması bizi koruyor.
+        # İstersen silebilirsin, istersen kalabilir. Şimdilik kalsın.
         time.sleep(1)
         if location:
             return location.latitude, location.longitude
